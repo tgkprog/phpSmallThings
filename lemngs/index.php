@@ -115,5 +115,10 @@ if (!empty($param) && !empty($_GET)) {
     echo "Invalid or missing URL parameter. Needs a param LevelID like <a href='https://sel2in.com/e?LevelID=3jv6mn7'>https://sel2in.com/e?LevelID=3jv6mn7</a>, got value of LevelID: " . htmlspecialchars($param) . ".";
 }
 ?>
+
+<br>
+Code of this page <a href="https://github.com/tgkprog/phpSmallThings/">github tgkprog phpSmallThings</a> 
+<br><br>
+<a href="/">Home page</a> 
 </body>
 </html>
