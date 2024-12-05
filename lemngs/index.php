@@ -5,11 +5,14 @@ $param = isset($_GET['LevelID']) ? $_GET['LevelID'] : '';
 
 // Validate that the parameter is in the expected format
 if (!empty($param)) {
-    // Set the MIME type and the redirection header
-    header("Content-Type: application/vnd.custom+link");
-    $c = "sadpuppylemmingsdplnk://?LinkType=LevelCode&LevelID=$param";
-    header("Location: $c", true, 302);
-    exit;
+	$param = preg_replace('/\s+|^#/', '', $param);
+	if (!empty($param)) {
+		// Set the MIME type and the redirection header
+		header("Content-Type: application/vnd.custom+link");
+		$c = "sadpuppylemmingsdplnk://?LinkType=LevelCode&LevelID=$param";
+		header("Location: $c", true, 302);
+		exit;
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +45,9 @@ if (!empty($param)) {
         // Function to copy the generated link to clipboard
         function createLink(ww) {
             // Get the LevelID from the text box
-            const levelID = document.getElementById('levelID').value.trim();
+            var tmpId = document.getElementById('levelID').value.trim();
+			tmpId = tmpId.replace(/ /g, "").replace(/^#/, "");
+			const levelID = tmpId;
             if (!levelID) {
                 alert('Please enter a LevelID before copying the link.');
                 return;
